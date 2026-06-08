@@ -62,3 +62,39 @@ Gera imagem + móulos:
 ```
 sudo make -j$(nproc)
 ```
+Faz o download o BusyBox:
+```
+sudo wget https://busybox.net/downloads/busybox-1.37.0.tar.bz2
+```
+Descompactando o arquivo instalado:
+```
+tar -xvf busybox-1.37.0.tar.bz2
+```
+Muda para o diretório do arquivo descompactado
+```
+cd busybox-1.37.0.tar.bz2
+```
+Cria o arquivo de configuração:
+```
+sudo make defoconfig
+```
+É necessario que o BusyBox esteja no modo estático, para isso, vamos verificar no arquivo de configuração:
+```
+cat .config | grep "STATIC"
+```
+Deve aparecer algo como:
+```
+# CONFIG_STATIC is not set
+# CONFIG_FEATURE_LIBBUSYBOX_STATIC is not set
+CONFIG_STATIC_LIBGCC=y
+```
+Nesse caso, é necessário alterar o CONFIG_STATIC dento do arquivo .config.
+
+Instale o musl:
+```
+sudo apt install -d musl
+```
+Faça a compilação:
+```
+sudo make -j$(nproc)
+```
