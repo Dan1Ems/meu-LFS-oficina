@@ -163,7 +163,7 @@ cd ..
 
 Crie um arquivo init:
 ```
-nvim init
+touch init
 ```
 
 Dentro do arquivo init, coloque:
